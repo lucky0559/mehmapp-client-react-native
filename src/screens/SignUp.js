@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useCallback } from 'react'
 import {
     StyleSheet,
     Text,
@@ -10,11 +10,15 @@ import {
     Alert,
     Pressable,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar,
+    BackHandler
   } from "react-native";
   import Header from "../utils/HeaderRegisterLogin";
   import Loading from "../utils/Loading";
   import { Context as AuthContext } from '../context/AuthContext';
+  import { useFocusEffect } from '@react-navigation/core';
+  import * as ScreenOrientation from 'expo-screen-orientation'
 
 
   const {height, width} = Dimensions.get('screen');
@@ -29,13 +33,25 @@ import {
 
 export default function SignUp ({navigation})  {
 
-  
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('Welcome')
+        return true
+      }
+      BackHandler.addEventListener('hardwareBackPress', onBackPress)
+      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress)
+    },[])
+  )
 
     const {signUp, state:{error}, clearError} = useContext(AuthContext);
 
     
   
-    const [fullname, setFullname] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirm_Password] = useState('')
@@ -54,16 +70,23 @@ export default function SignUp ({navigation})  {
           
         clearError()
   
-          if(fullname.length != 0 && email.length != 0 && password.length !=0
+          if(firstName.length != 0 && lastName.length != 0 && email.length != 0 && password.length !=0
             && phone_number.length != 0 && student_number.length != 0)
           {
   
-            if (fullname.length < 5) {
+            if (firstName.length < 3) {
       
-              ToastAndroid.show('Please provide more than 5 characters for fullname',
+              ToastAndroid.show('Please provide more than 3 characters for firstname',
               ToastAndroid.SHORT);
             
           }
+
+          else if (lastName.length < 5) {
+      
+            ToastAndroid.show('Please provide more than 5 characters for firstname',
+            ToastAndroid.SHORT);
+          
+        }
       
             else if(!email.includes('@cvsu.edu.ph'))
             {
@@ -108,7 +131,7 @@ export default function SignUp ({navigation})  {
                 setLoginPending(false)
   
                 try {
-                 const response = await signUp({fullname, email, phone_number, student_number, password});
+                 const response = await signUp({firstName, lastName, email, phone_number, student_number, password});
 
                 if(response) {
                   Alert.alert(
@@ -195,12 +218,20 @@ export default function SignUp ({navigation})  {
                   <View style={styles.formParent}>
                     <View style={styles.form}>
                       <TextInput
-                        placeholder="Fullname"
+                        placeholder="First Name"
                         placeholderTextColor='#081B11'
                         style={styles.name_fonts}
                         keyboardType="default"
-                        value={fullname}
-                        onChangeText={setFullname}
+                        value={firstName}
+                        onChangeText={setFirstName}
+                      />
+                      <TextInput
+                        placeholder="Last Name"
+                        placeholderTextColor='#081B11'
+                        style={styles.name_fonts}
+                        keyboardType="default"
+                        value={lastName}
+                        onChangeText={setLastName}
                       />
                       <TextInput
                         placeholder="CvSU Email"
@@ -285,6 +316,7 @@ export default function SignUp ({navigation})  {
         alignItems: "center",
         justifyContent: "flex-start",
         flexDirection: "column",
+        paddingTop: StatusBar.currentHeight
       },
       form: {
         justifyContent: "space-between",
@@ -310,6 +342,7 @@ export default function SignUp ({navigation})  {
         borderBottomWidth: 1,
         fontSize: 15,
         marginBottom: 20,
+        fontFamily: 'Roboto_Light'
       },
       name_fonts: {
         borderBottomColor: "#000000",
@@ -330,6 +363,7 @@ export default function SignUp ({navigation})  {
       },
       textbutton: {
         color: "#081B11",
+        fontFamily: 'Lemon'
       },
       row: {
         flexDirection: "row",
@@ -341,6 +375,7 @@ export default function SignUp ({navigation})  {
       loginText: {
         color: "#081B11",
         textDecorationLine: "underline",
+        fontFamily: 'Roboto_Medium'
       },
       loginPressable: {
         flexDirection:'row-reverse',

@@ -1,46 +1,52 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {
 View, 
 StyleSheet,
 Text,
-Dimensions,
 TextInput,
-ScrollView
+ScrollView,
+StatusBar,
+BackHandler,
+Alert
 } from 'react-native';
-import GlobalStyle from '../utils/GlobalStyle';
 import Checkbox from '../utils/Checkbox';
+import { useFocusEffect } from '@react-navigation/core';
+import * as ScreenOrientation from 'expo-screen-orientation'
 
 
-const {height , width} = Dimensions.get('screen')
 
-const Form = () => {
+const Form = ({navigation}) => {
+
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+
+    const exitForm = () => {
+        setDescribe('')
+        navigation.navigate('Home')
+    }
+
+    useFocusEffect(
+        useCallback(() => {
+          const onBackPress = () => {
+            Alert.alert('Are You Sure?', 'You want to leave this form? Your input data will be loss', [
+                {
+                    text: 'Cancel',
+                    onPress: () => null,
+                    style: 'cancel'
+                },
+                {
+                    text: 'Yes',
+                    onPress: () => exitForm()
+                }
+            ])
+            return true
+          }
+          BackHandler.addEventListener('hardwareBackPress', onBackPress)
+          return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress)
+        },[])
+      )
 
 
     const [describe, setDescribe] = useState('')
-
-    
-
-    const [checkbox3, setCheckbox3] = useState(false)
-    const [checkbox4, setCheckbox4] = useState(false)
-    const [checkbox5, setCheckbox5] = useState(false)
-    const [checkbox6, setCheckbox6] = useState(false)
-    const [checkbox7, setCheckbox7] = useState(false)
-    const [checkbox8, setCheckbox8] = useState(false)
-    const [checkbox9, setCheckbox9] = useState(false)
-    const [checkbox10, setCheckbox10] = useState(false)
-    const [checkbox11, setCheckbox11] = useState(false)
-    const [checkbox12, setCheckbox12] = useState(false)
-    const [checkbox13, setCheckbox13] = useState(false)
-    const [checkbox14, setCheckbox14] = useState(false)
-    const [checkbox15, setCheckbox15] = useState(false)
-    const [checkbox16, setCheckbox16] = useState(false)
-    const [checkbox17, setCheckbox17] = useState(false)
-    const [checkbox18, setCheckbox18] = useState(false)
-    const [checkbox19, setCheckbox19] = useState(false)
-    
-
-    var checkboxvalue;
-
     
 
 
@@ -64,7 +70,7 @@ const describeHandler = (textvalue) => {
 
                 <View>
                 <Text
-                style={[GlobalStyle.robotoMedium , styles.headerText]} >
+                style={styles.headerText} >
                     Describe Yourself:
                 </Text>
                 <TextInput
@@ -74,12 +80,14 @@ const describeHandler = (textvalue) => {
                 </View>
 
                 <View style={styles.presentIssues}>
-                    <Text style={[GlobalStyle.robotoMedium , styles.headerText]}>
+                    <Text style={styles.headerText}>
                         Present Issues:
                     </Text>
 
                     <View style={styles.checkbox}>
-                        <Checkbox />
+                        <Checkbox
+                        describe={describe}
+                        />
                     </View>
                 
 
@@ -98,6 +106,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:'column',
         backgroundColor:'#2CD681',
+        marginTop: StatusBar.currentHeight
     },
     wholeForm: {
         flex:1,
@@ -110,10 +119,11 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(170,170,166,.3)',
     },
     headerText: {
-        fontWeight:'bold',
         color:'#081B11',
         letterSpacing:2,
         marginBottom:15,
+        fontFamily: 'Roboto_Bold',
+        fontSize: 20,
     },
     presentIssues: {
         marginTop:15,

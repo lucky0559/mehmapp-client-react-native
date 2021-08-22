@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,11 +11,13 @@ import {
   Pressable,
   Dimensions,
   StatusBar,
+  BackHandler,
 } from "react-native";
 import Header from "../utils/HeaderRegisterLogin";
 import Loading from "../utils/Loading";
 import { Context as AuthContext } from "../context/AuthContext";
-
+import { useFocusEffect } from "@react-navigation/core";
+import * as ScreenOrientation from 'expo-screen-orientation'
 
 
 const {height, width} = Dimensions.get('screen');
@@ -28,7 +30,21 @@ const DismissKeyboard = ({ children }) => (
 
 const Login = ({navigation}) => {
 
-  
+
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+
+useFocusEffect(
+  useCallback(() => {
+    const onBackPress = () => {
+      navigation.navigate('Welcome')
+      return true
+    }
+    BackHandler.addEventListener('hardwareBackPress', onBackPress)
+    return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress)
+  },[])
+)
+
+
 
 const {state:{error}, signIn, clearError} = useContext(AuthContext)
 
@@ -47,6 +63,8 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
     }
     
        const loginClick = () => {
+
+
            
         clearError()
     
@@ -77,6 +95,8 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                   signIn({email, password})
     
                   setLoginPending(false)
+
+                  navigation.navigate('Home')
                   
                   
               }, 2500);
@@ -191,7 +211,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: 'center',
         flexDirection: "column",
-        marginTop: StatusBar.currentHeight
+        paddingTop: StatusBar.currentHeight
       },
       form: {
         justifyContent: 'space-between',
@@ -218,6 +238,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         width: width - 80,
         marginTop: 30,
+        fontFamily: 'Roboto_Regular'
       },
     
       row: {
@@ -239,10 +260,12 @@ const styles = StyleSheet.create({
       },
       textbutton: {
         color: "#081B11",
+        fontFamily: 'Lemon'
       },
       text: {
         color: "#081B11",
         textDecorationLine: "underline",
+        fontFamily: 'Roboto_Medium'
       },
       pressableRegister: {
           marginTop:'12%',

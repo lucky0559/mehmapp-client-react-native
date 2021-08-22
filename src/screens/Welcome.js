@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
-View, 
+View,
 StyleSheet,
 Text,
 TouchableOpacity,
@@ -8,16 +8,24 @@ StatusBar
 } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { Context as AuthContext } from '../context/AuthContext';
+import * as ScreenOrientation from 'expo-screen-orientation'
+
 
 const Welcome = ({navigation}) => {
 
-  const {clearError} = useContext(AuthContext)
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+
+  const {clearError, localSignIn} = useContext(AuthContext)
+
+  useEffect(() => {
+    localSignIn();
+},[])
 
     const registerClick = () => {
       clearError()
         navigation.replace('SignUp')
       }
-      
+
       const loginClick = () => {
         clearError()
         navigation.replace('SignIn')
@@ -25,22 +33,22 @@ const Welcome = ({navigation}) => {
 
 
     return (
-        
+
             <View
         style={styles.screen}>
           <View
           style={styles.lottieview}>
-            <LottieView 
+            <LottieView
             source={require('../assets/LottieFiles/hello-bubble.json')}
-            autoPlay 
+            autoPlay
             loop
             style={styles.lottiebubble}/>
-            <LottieView 
+            <LottieView
             source={require('../assets/LottieFiles/hello.json')}
-            autoPlay 
+            autoPlay
             loop/>
           </View>
-    
+
           <View
           style={styles.loginform}>
             <View
@@ -49,7 +57,7 @@ const Welcome = ({navigation}) => {
             style={styles.text}>
               Feel better. Sleep better.
             </Text>
-    
+
           <TouchableOpacity
           style={styles.button}
           onPress={loginClick}>
@@ -58,7 +66,7 @@ const Welcome = ({navigation}) => {
               SIGN IN
             </Text>
           </TouchableOpacity>
-    
+
           <TouchableOpacity
           style={styles.button}
           onPress={registerClick}>
@@ -67,12 +75,12 @@ const Welcome = ({navigation}) => {
               REGISTER
             </Text>
           </TouchableOpacity>
-    
+
             </View>
-            
+
           </View>
-    
-          
+
+
         </View>
     );
 }
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
     screen:{
         backgroundColor:'#EFDDCF',
         flex:1,
-        marginTop: StatusBar.currentHeight
+        paddingTop: StatusBar.currentHeight
       },
       lottieview: {
         flex:1.5,
@@ -110,7 +118,6 @@ const styles = StyleSheet.create({
       text: {
         fontSize:15,
         color:'#FFFFFF',
-    
       },
       button:{
         alignItems:'center',
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
       },
       textbutton:{
         color:'#081B11',
+        fontFamily: 'Lemon'
       },
 })
 
