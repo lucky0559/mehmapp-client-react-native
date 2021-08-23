@@ -96,7 +96,6 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
     
                   setLoginPending(false)
 
-                  navigation.navigate('Home')
                   
                   
               }, 2500);

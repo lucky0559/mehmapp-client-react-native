@@ -103,7 +103,7 @@ const submit = async() => {
     return (
         <>
         <View style={styles.screen}>
-            <View>
+            <View style={styles.top}>
                 <Text
                     style={styles.headerText}
                 >
@@ -288,7 +288,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'Lemon'
-    }
+    },
+    top: {
+
+    },
+    
 })
 
 export default Form2;

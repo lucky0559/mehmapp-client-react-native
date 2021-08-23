@@ -318,34 +318,39 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     button: {
-        alignItems: "center",
-        justifyContent: "center",
-        alignSelf:'center',
         margin: 20,
         backgroundColor: "#EFDDCF",
-        width: width - 300,
-        height: height / 10,
+        width: 200,
         borderRadius: 20,
         padding: 10,
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
       },
       buttonContainer: {
-          marginTop: 20
+          flex: 1,
+          justifyContent: 'center',
+          paddingVertical: '20%',
+          alignItems: 'center'
       },
       text: {
           textAlign: 'center',
           fontFamily: 'Roboto_Medium',
           fontSize: 20,
+          flex: 1,
+          lineHeight: 30,
+          alignSelf: 'center'
       },
       buttonModal: {
-        alignItems: "center",
-        justifyContent: "center",
         alignSelf:'center',
         margin: 20,
         backgroundColor: "#EFDDCF",
-        width: width - 300,
-        height: height / 18,
+        width: 200,
+        height: 60,
         borderRadius: 20,
         padding: 10,
+        flexDirection: 'row'
       },
       screenModal: {
         flex:1,
@@ -357,21 +362,28 @@ const styles = StyleSheet.create({
     },
     videoPlayer: {
         width: width,
-        height: 300,
+        height: 237,
     },
     title: {
         fontSize: 30,
         margin: 10,
-        fontFamily: 'Roboto_Bold'
+        fontFamily: 'Roboto_Bold',
+        alignSelf: 'center',
+        textAlign: 'center',
+        flex: 1
     },
     content: {
         fontSize: 18,
         lineHeight: 50,
-        fontFamily: 'Roboto_Regular'
+        fontFamily: 'Roboto_Regular',
+        flex: 1
     },
     buttonText: {
         fontFamily: 'Lemon',
-        fontSize: 18
+        fontSize: 18,
+        flex: 1,
+        alignSelf: 'center',
+        textAlign: 'center'
     }
 })
 
