@@ -12,16 +12,17 @@ import {
     Dimensions,
     TouchableOpacity,
     StatusBar,
-    BackHandler
+    BackHandler,
   } from "react-native";
   import Header from "../utils/HeaderRegisterLogin";
   import Loading from "../utils/Loading";
   import { Context as AuthContext } from '../context/AuthContext';
   import { useFocusEffect } from '@react-navigation/core';
   import * as ScreenOrientation from 'expo-screen-orientation'
+  import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+  import { Ionicons } from '@expo/vector-icons';
 
 
-  const {height, width} = Dimensions.get('screen');
 
 
 
@@ -58,7 +59,10 @@ export default function SignUp ({navigation})  {
     const [phone_number, setPhone_Number] = useState('');
     const [student_number, setStudent_Number] = useState('');
   
-    const [loginPending, setLoginPending] = useState(false);
+    const [loginPending, setLoginPending] = useState(false)
+
+    const [hidePassword, setHidePassword] = useState(true)
+    const [hideConfirmPassword, setHideConfirmPassword] = useState(true)
   
     const loginText = () => {
       clearError()
@@ -69,35 +73,32 @@ export default function SignUp ({navigation})  {
       const registerClick = () => {
           
         clearError()
+        
+        var regex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_.,])[A-Za-z\d@$!%*?&_.,]{6,}$/)
   
           if(firstName.length != 0 && lastName.length != 0 && email.length != 0 && password.length !=0
             && phone_number.length != 0 && student_number.length != 0)
           {
   
-            if (firstName.length < 3) {
-      
-              ToastAndroid.show('Please provide more than 3 characters for firstname',
-              ToastAndroid.SHORT);
             
-          }
-
-          else if (lastName.length < 5) {
       
-            ToastAndroid.show('Please provide more than 5 characters for firstname',
-            ToastAndroid.SHORT);
-          
-        }
-      
-            else if(!email.includes('@cvsu.edu.ph'))
+            if(!email.includes('@cvsu.edu.ph'))
             {
               ToastAndroid.show('Please provide valid CvSU Email',
               ToastAndroid.SHORT);
             }
       
-            else if(password.length <= 6)
+            else if(password.length < 6)
             {
               ToastAndroid.show('Please provide 6 or more characters for password',
               ToastAndroid.SHORT);
+            }
+
+            else if(!regex.test(password)) {
+              ToastAndroid.show('Password must contain atleast one uppercase letter, one lowercase letter, one number and one special character',
+              ToastAndroid.LONG);
+              setPassword('')
+              setConfirm_Password('')
             }
       
             else if(phone_number.length != 11 || !phone_number.startsWith("09",0))
@@ -240,6 +241,7 @@ export default function SignUp ({navigation})  {
                         keyboardType="email-address"
                         value={email}
                         onChangeText={setEmail}
+                        autoCapitalize='none'
                       />
                       <TextInput
                         placeholder="Phone Number"
@@ -257,24 +259,35 @@ export default function SignUp ({navigation})  {
                         value={student_number}
                         onChangeText={setStudent_Number}
                       />
+                      <View style={styles.passRow}>
                       <TextInput
                         placeholder="Password"
                         placeholderTextColor='#081B11'
-                        style={styles.fonts}
+                        style={styles.passFonts}
                         keyboardType="default"
-                        secureTextEntry={true}
+                        secureTextEntry={hidePassword}
                         value={password}
                         onChangeText={setPassword}
+                        autoCapitalize='none'
                       />
+                        <Ionicons name={hidePassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHidePassword(!hidePassword)}
+                         />
+                      </View>
+                      <View style={styles.passRow}>
                       <TextInput
                         placeholder="Confirm Password"
                         placeholderTextColor='#081B11'
-                        style={styles.fonts}
+                        style={styles.passFonts}
                         keyboardType="default"
-                        secureTextEntry={true}
+                        secureTextEntry={hideConfirmPassword}
                         value={confirmPassword}
                         onChangeText={setConfirm_Password}
+                        autoCapitalize='none'
                       />
+                      <Ionicons name={hideConfirmPassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHideConfirmPassword(!hideConfirmPassword)}
+                         />
+                      </View>
+                      
           {error ? 
           <Text style={styles.error}>
             {error}
@@ -322,7 +335,7 @@ export default function SignUp ({navigation})  {
         justifyContent: "space-between",
         alignItems: "stretch",
         flexDirection: "column",
-        width: width - 100,
+        width: wp(80),
       },
       formParent: {
         paddingLeft: 40,
@@ -335,21 +348,22 @@ export default function SignUp ({navigation})  {
         justifyContent: "center",
         flexDirection: "row",
         backgroundColor: "#2CD681",
-        width: width,
-      },
-      fonts: {
-        borderBottomColor: "#000000",
-        borderBottomWidth: 1,
-        fontSize: 15,
-        marginBottom: 20,
-        fontFamily: 'Roboto_Light'
+        width: wp(100),
       },
       name_fonts: {
         borderBottomColor: "#000000",
         borderBottomWidth: 1,
         fontSize: 15,
         marginBottom: 20,
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
+        fontFamily: 'Roboto_Regular'
+      },
+      fonts: {
+        borderBottomColor: "#000000",
+        borderBottomWidth: 1,
+        fontSize: 15,
+        marginBottom: 20,
+        fontFamily: 'Roboto_Regular',
       },
       button: {
         alignItems: "center",
@@ -357,8 +371,8 @@ export default function SignUp ({navigation})  {
         alignSelf:'center',
         marginTop: 40,
         backgroundColor: "#EFDDCF",
-        width: width - 200,
-        height: height / 15,
+        width: wp(50),
+        height: hp(7),
         borderRadius: 50,
       },
       textbutton: {
@@ -379,6 +393,24 @@ export default function SignUp ({navigation})  {
       },
       loginPressable: {
         flexDirection:'row-reverse',
-        marginTop:'15%'
+        marginTop:50,
+      },
+      icon: {
+        fontSize: 20,
+        right: 10,
+        position: 'absolute'
+      },
+      passFonts: {
+          borderBottomColor: "#000000",
+          borderBottomWidth: 1,
+          fontSize: 15,
+          marginBottom: 20,
+          fontFamily: 'Roboto_Regular',
+          paddingLeft: 0,
+          flex: 1,
+      },
+      passRow: {
+        flexDirection: 'row',
+        justifyContent: 'center'
       }
     }); 

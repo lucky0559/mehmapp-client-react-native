@@ -9,6 +9,7 @@ StatusBar
 import LottieView from 'lottie-react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import * as ScreenOrientation from 'expo-screen-orientation'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
 const Welcome = ({navigation}) => {
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
         top:0,
         position:'absolute',
         left:0,
-        width:'80%',
-        height:'50%',
+        width:wp(70),
+        height:hp(13),
         alignItems:'center',
         justifyContent:'center'
       },
@@ -118,14 +119,16 @@ const styles = StyleSheet.create({
       text: {
         fontSize:15,
         color:'#FFFFFF',
+        marginTop: 20,
+        fontFamily: 'Roboto_Regular'
       },
       button:{
         alignItems:'center',
         justifyContent:'center',
         marginTop:40,
         backgroundColor:'#EFDDCF',
-        width:'55%',
-        height:'23%',
+        width:wp(50),
+        height:hp(7),
         borderRadius:50,
       },
       textbutton:{

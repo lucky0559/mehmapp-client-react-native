@@ -4,6 +4,7 @@ ImageBackground,
 StyleSheet,
 Dimensions
 } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 const {width} = Dimensions.get('screen')
 
@@ -12,8 +13,8 @@ const Header = (props) => {
     <ImageBackground
     source={require("../assets/background.jpg")}
     style={{
-      width: width,
-      height: 550,
+      width: wp(100),
+      height: hp(60),
       top: -70,
       flexDirection: "row",
       justifyContent: "center",

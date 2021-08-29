@@ -6,7 +6,6 @@ Text,
 TouchableOpacity,
 Modal,
 StatusBar,
-Dimensions,
 ScrollView,
 BackHandler
 } from 'react-native';
@@ -14,8 +13,8 @@ import { Video } from 'expo-av';
 import VideoPlayer from 'expo-video-player';
 import { useFocusEffect } from '@react-navigation/core';
 import * as ScreenOrientation from 'expo-screen-orientation'
-
-const {width, height} = Dimensions.get('screen')
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import {Card, ListItem, Button} from 'react-native-elements'
 
 const Tips = ({navigation}) => {
 
@@ -42,52 +41,85 @@ const Tips = ({navigation}) => {
 
     return (
         <View style={styles.screen}>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.button}
-                    onPress={() => {setTip1(!tips1) }}
-                >
-                    <Text style={styles.text}>
-                        Seek Social Support
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.button}
-                    onPress={() => {setTip2(!tips2)}}
-                >
-                    <Text style={styles.text}>
-                        Become a Relaxation Expert
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.button}
-                    onPress={() => {setTip3(!tips3)}}
-                >
-                    <Text style={styles.text}>
-                        Try to Manage How You Follow the Outbreak in the Media
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.button}
-                    onPress={() => {setTip4(!tips4)}}
-                >
-                    <Text style={styles.text}>
-                        Recognize That Your Anxiety is Completely Normal
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.button}
-                    onPress={() => {setTip5(!tips5)}}
-                >
-                    <Text style={styles.text}>
-                        Finding a Distraction
-                    </Text>
-                </TouchableOpacity>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={{marginTop: 20, marginBottom: 20}}
+            >
+            <Card containerStyle={{width: wp(70), height: hp(28), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title h4>
+                    Seek Social Support
+                </Card.Title>
+                <Card.Divider/>
+                <Card.Image source={{uri: 'https://res.cloudinary.com/intro-pl/image/upload/v1630220084/mehmapp-tips/Seek_Social_Support_b1stq8.jpg'}}
+                />
+                <Button 
+                    title="View Now"
+                    buttonStyle={{marginTop: 10}}
+                    onPress={() => setTip1(!tips1)}
+                />
+            </Card>
+
+            <Card containerStyle={{width: wp(70), height: hp(28), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title h4>
+                    Relaxation Expert
+                </Card.Title>
+                <Card.Divider/>
+                <Card.Image source={{uri: 'https://res.cloudinary.com/intro-pl/image/upload/v1630219793/mehmapp-tips/RelaxationExpert_k6ijz9.jpg'}}
+                />
+                <Button 
+                    title="View Now"
+                    buttonStyle={{marginTop: 10}}
+                    onPress={() => setTip2(!tips2)}
+                />
+            </Card>
+
+            <Card containerStyle={{width: wp(70), height: hp(30), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title h4>
+                    Manage How You Follow the Outbreak in the Media
+                </Card.Title>
+                <Card.Divider/>
+                <Card.Image source={{uri: 'https://res.cloudinary.com/intro-pl/image/upload/v1630220592/mehmapp-tips/outbreakMedia_obeerg.jpg'}}
+                />
+                <Button 
+                    title="View Now"
+                    buttonStyle={{marginTop: 10}}
+                    onPress={() => setTip3(!tips3)}
+                />
+            </Card>
+
+            <Card containerStyle={{width: wp(70), height: hp(30), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title h4>
+                    Recognize That Your Anxiety is Completely Normal
+                </Card.Title>
+                <Card.Divider/>
+                <Card.Image source={{uri: 'https://res.cloudinary.com/intro-pl/image/upload/v1630220705/mehmapp-tips/anxietyNormal_mmmnte.jpg'}}
+                />
+                <Button 
+                    title="View Now"
+                    buttonStyle={{marginTop: 10}}
+                    onPress={() => setTip4(!tips4)}
+                />
+            </Card>
+
+            <Card containerStyle={{width: wp(70), height: hp(30), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title h4>
+                    Finding Distractions
+                </Card.Title>
+                <Card.Divider/>
+                <Card.Image source={{uri: 'https://res.cloudinary.com/intro-pl/image/upload/v1630221023/mehmapp-tips/findingDistractions_qegupm.jpg'}}
+                />
+                <Button 
+                    title="View Now"
+                    buttonStyle={{marginTop: 10}}
+                    onPress={() => setTip5(!tips5)}
+                />
+            </Card>
+
+            
+                
+               
+                
+                
 
                 <Modal
                     animationType="slide"
@@ -303,7 +335,7 @@ const Tips = ({navigation}) => {
                     </View>
                 </Modal>
 
-            </View>
+            </ScrollView>
         </View>
     );
 }
@@ -311,7 +343,6 @@ const Tips = ({navigation}) => {
 const styles = StyleSheet.create({
     screen: {
         flex:1,
-        flexDirection:'column',
         backgroundColor:'#2CD681',
         marginTop: StatusBar.currentHeight,
         alignItems: 'center',
@@ -320,7 +351,7 @@ const styles = StyleSheet.create({
     button: {
         margin: 20,
         backgroundColor: "#EFDDCF",
-        width: 200,
+        width: wp(40),
         borderRadius: 20,
         padding: 10,
         flex: 1,
@@ -337,7 +368,7 @@ const styles = StyleSheet.create({
       text: {
           textAlign: 'center',
           fontFamily: 'Roboto_Medium',
-          fontSize: 20,
+          fontSize: hp(2),
           flex: 1,
           lineHeight: 30,
           alignSelf: 'center'
@@ -346,8 +377,8 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         margin: 20,
         backgroundColor: "#EFDDCF",
-        width: 200,
-        height: 60,
+        width: wp(50),
+        height: hp(5),
         borderRadius: 20,
         padding: 10,
         flexDirection: 'row'
@@ -361,11 +392,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start'
     },
     videoPlayer: {
-        width: width,
-        height: 237,
+        width: wp(100),
+        height: hp(30),
     },
     title: {
-        fontSize: 30,
+        fontSize: hp(4),
         margin: 10,
         fontFamily: 'Roboto_Bold',
         alignSelf: 'center',
@@ -373,18 +404,18 @@ const styles = StyleSheet.create({
         flex: 1
     },
     content: {
-        fontSize: 18,
+        fontSize: hp(2),
         lineHeight: 50,
         fontFamily: 'Roboto_Regular',
         flex: 1
     },
     buttonText: {
         fontFamily: 'Lemon',
-        fontSize: 18,
+        fontSize: hp(2),
         flex: 1,
         alignSelf: 'center',
         textAlign: 'center'
-    }
+    },
 })
 
 export default Tips;

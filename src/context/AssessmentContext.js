@@ -10,9 +10,9 @@ const assessmentReducer = (state, action) => {
 }
 
 
-const submitForm = dispatch => async({user_id, firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling}) => {
+const submitForm = dispatch => async({user_id, email, firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling}) => {
     try {
-        const response = await axios.post(`/assessment/${user_id}`, {firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling})
+        const response = await axios.post(`/assessment/${user_id}`, {email,firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling})
 
         return response
     }

@@ -9,6 +9,7 @@ TouchableOpacity
 } from 'react-native';
 import Checkbox from '@react-native-community/checkbox'
 import { useNavigation } from '@react-navigation/core';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
 const {height, width} = Dimensions.get('screen')
@@ -396,12 +397,13 @@ const styles = StyleSheet.create({
         alignSelf:'flex-end',
         margin: 20,
         backgroundColor: "#EFDDCF",
-        width: width - 300,
-        height: height / 18,
+        width: wp(40),
+        height: hp(6),
         borderRadius: 50,
       },
     buttonText: {
-        fontFamily: 'Lemon'
+        fontFamily: 'Lemon',
+        fontSize: hp(2)
     }
 })
 

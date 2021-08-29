@@ -18,9 +18,11 @@ import Loading from "../utils/Loading";
 import { Context as AuthContext } from "../context/AuthContext";
 import { useFocusEffect } from "@react-navigation/core";
 import * as ScreenOrientation from 'expo-screen-orientation'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { Ionicons } from '@expo/vector-icons';
 
 
-const {height, width} = Dimensions.get('screen');
+
 
 const DismissKeyboard = ({ children }) => (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -52,6 +54,8 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loginPending, setLoginPending] = useState(false)
+
+    const [hidePassword, setHidePassword] = useState(true)
 
     
     const emailHandler = (textvalue) => {
@@ -162,16 +166,20 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                       style={styles.fonts}
                       keyboardType="email-address"
                       onChangeText={(textvalue) => emailHandler(textvalue)}
+                      autoCapitalize='none'
                     />
-        
+                    <View style={styles.passRow}>
                     <TextInput
                       placeholder="Password"
                       placeholderTextColor='#081B11'
-                      style={styles.fonts}
+                      style={styles.passFonts}
                       keyboardType="default"
                       onChangeText={(textvalue) => passwordHandler(textvalue)}
-                      secureTextEntry
+                      secureTextEntry={hidePassword}
                     />
+                    <Ionicons name={hidePassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHidePassword(!hidePassword)}
+                         />
+                    </View>
         {error ? 
           <Text style={styles.error}>
             {error}
@@ -216,7 +224,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: "column",
-        width: width - 50,
       },
       formParent: {
         paddingLeft: 40,
@@ -229,13 +236,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flexDirection: "row",
         backgroundColor: "#2CD681",
-        width: width,
+        width: wp(100),
       },
       fonts: {
         borderBottomColor: "#000000",
         borderBottomWidth: 1,
         fontSize: 15,
-        width: width - 80,
+        width: wp(85),
         marginTop: 30,
         fontFamily: 'Roboto_Regular'
       },
@@ -253,8 +260,8 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         marginTop: 50,
         backgroundColor: "#EFDDCF",
-        width: width - 200,
-        height: height / 15,
+        width: wp(50),
+        height: hp(7),
         borderRadius: 50,
       },
       textbutton: {
@@ -267,12 +274,31 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto_Medium'
       },
       pressableRegister: {
-          marginTop:'12%',
-          left:width / 3,
+          marginTop:50,
+          left:wp(35),
       },
       error: {
         alignSelf: 'flex-start',
         marginTop: 10,
+      },
+      icon: {
+        fontSize: 20,
+        right: 10,
+        position: 'absolute'
+      },
+      passFonts: {
+          borderBottomColor: "#000000",
+          borderBottomWidth: 1,
+          fontSize: 15,
+          marginBottom: 20,
+          fontFamily: 'Roboto_Regular',
+          paddingLeft: 0,
+          flex: 1,
+      },
+      passRow: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 30
       }
 })
 

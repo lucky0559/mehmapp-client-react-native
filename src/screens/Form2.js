@@ -18,9 +18,9 @@ import { Context as AuthContext } from '../context/AuthContext'
 import Loading from '../utils/Loading';
 import { useFocusEffect } from '@react-navigation/core';
 import * as ScreenOrientation from 'expo-screen-orientation'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
-const {height , width} = Dimensions.get('screen')
 
 const Form2 = ({route}) => {
 
@@ -40,7 +40,7 @@ const Form2 = ({route}) => {
 
 
 const {submitForm} = useContext(AssessmentContext)
-const {state:{user_id, firstName, lastName, student_number, phone_number}} = useContext(AuthContext)
+const {state:{user_id, email, firstName, lastName, student_number, phone_number}} = useContext(AuthContext)
 
 const navigation = useNavigation();
 
@@ -77,7 +77,7 @@ const submit = async() => {
             }
         }
     
-        const response = await submitForm({user_id, firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling})
+        const response = await submitForm({user_id, email, firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling})
 
         if(response) {
             Alert.alert(
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     headerText: {
         color:'#081B11',
         letterSpacing:2,
-        fontSize: 20,
+        fontSize: hp(2),
         fontFamily: 'Roboto_Bold',
     },
     radio: {
@@ -273,8 +273,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignSelf:'flex-end',
         backgroundColor: "#EFDDCF",
-        width: width - 300,
-        height: height / 18,
+        width: wp(40),
+        height: hp(6),
         borderRadius: 50,
         marginTop: 30
       },

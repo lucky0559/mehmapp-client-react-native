@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const authReducer = (state, action) => {
     switch(action.type) {
         case 'set_token':
-            return {token: action.payload.token, error: '', firstName: action.payload.firstName, user_id: action.payload.user_id, lastName: action.payload.lastName, student_number: action.payload.student_number, phone_number: action.payload.phone_number}
+            return {token: action.payload.token, error: '', email: action.payload.email,firstName: action.payload.firstName, user_id: action.payload.user_id, lastName: action.payload.lastName, student_number: action.payload.student_number, phone_number: action.payload.phone_number}
         case 'add_error':
             return {...state, error: action.payload}
         case 'clear_error':
@@ -51,6 +51,7 @@ const signIn = dispatch => async({email, password}) => {
     try {
         const response = await axios.post('/signin', {email, password})
         await AsyncStorage.setItem('token', response.data.token)
+        await AsyncStorage.setItem('email', response.data.email)
         await AsyncStorage.setItem('firstName', response.data.firstName)
         await AsyncStorage.setItem('lastName', response.data.lastName)
         await AsyncStorage.setItem('user_id', response.data.user_id.toString())
@@ -63,6 +64,7 @@ const signIn = dispatch => async({email, password}) => {
             type: 'set_token',
             payload: {
                 token: response.data.token,
+                email: response.data.email,
                 firstName: response.data.firstName,
                 lastName: response.data.lastName,
                 user_id: response.data.user_id,
@@ -124,6 +126,6 @@ export const { Context, Provider } = createDataContext(
         clearError
     },
     {
-        token: null, error: '' , firstName: null, user_id: null, lastName: null, student_number: null, phone_number: null
+        token: null, error: '' , email: null,firstName: null, user_id: null, lastName: null, student_number: null, phone_number: null
     }
 )

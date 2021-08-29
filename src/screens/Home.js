@@ -16,6 +16,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 import { useNavigation } from '@react-navigation/core';
 import { useFocusEffect } from '@react-navigation/core';
 import * as ScreenOrientation from 'expo-screen-orientation'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
 
@@ -191,14 +192,14 @@ const Home = () => {
             },
             headerFont : {
                 color:'#081b11',
-                fontSize:20,
+                fontSize:hp(2),
                 margin:5,
                 textTransform:'uppercase',
                 fontFamily: 'Roboto_Medium'
             },
             bodyFont: {
                 color:'#EFDDCF',
-                fontSize:20,
+                fontSize:hp(2),
                 margin:5,
                 textTransform:'uppercase',
                 textShadowColor:'#081b11',
@@ -207,15 +208,15 @@ const Home = () => {
                 fontFamily: 'Roboto_Medium'
             },
             image: {
-                width:width / 3,
-                height: height / 6,
+                width:wp(40),
+                height: hp(20),
             },
             imageButton: {
                 alignItems:'center',
             },
             signOutText : {
                 color:'#081b11',
-                fontSize:15,
+                fontSize:hp(1.5),
                 margin:5,
                 textTransform:'uppercase',
                 fontFamily: 'Lemon'
@@ -227,8 +228,8 @@ const Home = () => {
                 marginRight:40,
                 marginTop:40,
                 backgroundColor: "#EFDDCF",
-                width: width - 350,
-                height: height / 25,
+                width: wp(20),
+                height: hp(4),
                 borderRadius: 50,
             }
         })
