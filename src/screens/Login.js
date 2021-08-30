@@ -176,6 +176,7 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                       keyboardType="default"
                       onChangeText={(textvalue) => passwordHandler(textvalue)}
                       secureTextEntry={hidePassword}
+                      autoCapitalize='none'
                     />
                     <Ionicons name={hidePassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHidePassword(!hidePassword)}
                          />

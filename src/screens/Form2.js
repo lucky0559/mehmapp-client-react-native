@@ -3,13 +3,13 @@ import {
 View, 
 StyleSheet,
 Text,
-Dimensions,
 TextInput,
 StatusBar,
 TouchableOpacity,
 ToastAndroid,
 Alert,
-BackHandler
+BackHandler,
+ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import RadioButton from 'expo-radio-button'
@@ -103,6 +103,7 @@ const submit = async() => {
     return (
         <>
         <View style={styles.screen}>
+            <ScrollView>
             <View style={styles.top}>
                 <Text
                     style={styles.headerText}
@@ -228,7 +229,7 @@ const submit = async() => {
             </View>
         
             
-
+            </ScrollView>
         </View>
         {loading ? <Loading/> : null}
         </>

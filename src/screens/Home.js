@@ -20,8 +20,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 
 
-const {height, width} = Dimensions.get('screen');
-
 const Home = () => {
 
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
@@ -208,8 +206,8 @@ const Home = () => {
                 fontFamily: 'Roboto_Medium'
             },
             image: {
-                width:wp(40),
-                height: hp(20),
+                width:150,
+                height: 150,
             },
             imageButton: {
                 alignItems:'center',

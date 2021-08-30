@@ -45,8 +45,8 @@ const Tips = ({navigation}) => {
                 showsVerticalScrollIndicator={false}
                 style={{marginTop: 20, marginBottom: 20}}
             >
-            <Card containerStyle={{width: wp(70), height: hp(28), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
-                <Card.Title h4>
+            <Card containerStyle={{width: wp(70), height: 270, backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title>
                     Seek Social Support
                 </Card.Title>
                 <Card.Divider/>
@@ -54,13 +54,13 @@ const Tips = ({navigation}) => {
                 />
                 <Button 
                     title="View Now"
-                    buttonStyle={{marginTop: 10}}
+                    buttonStyle={{marginTop: 5}}
                     onPress={() => setTip1(!tips1)}
                 />
             </Card>
 
-            <Card containerStyle={{width: wp(70), height: hp(28), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
-                <Card.Title h4>
+            <Card containerStyle={{width: wp(70), height: 270, backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title>
                     Relaxation Expert
                 </Card.Title>
                 <Card.Divider/>
@@ -68,13 +68,13 @@ const Tips = ({navigation}) => {
                 />
                 <Button 
                     title="View Now"
-                    buttonStyle={{marginTop: 10}}
+                    buttonStyle={{marginTop: 5}}
                     onPress={() => setTip2(!tips2)}
                 />
             </Card>
 
-            <Card containerStyle={{width: wp(70), height: hp(30), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
-                <Card.Title h4>
+            <Card containerStyle={{width: wp(70), height: 285, backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title>
                     Manage How You Follow the Outbreak in the Media
                 </Card.Title>
                 <Card.Divider/>
@@ -82,13 +82,13 @@ const Tips = ({navigation}) => {
                 />
                 <Button 
                     title="View Now"
-                    buttonStyle={{marginTop: 10}}
+                    buttonStyle={{marginTop: 5}}
                     onPress={() => setTip3(!tips3)}
                 />
             </Card>
 
-            <Card containerStyle={{width: wp(70), height: hp(30), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
-                <Card.Title h4>
+            <Card containerStyle={{width: wp(70), height: 285, backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title>
                     Recognize That Your Anxiety is Completely Normal
                 </Card.Title>
                 <Card.Divider/>
@@ -96,13 +96,13 @@ const Tips = ({navigation}) => {
                 />
                 <Button 
                     title="View Now"
-                    buttonStyle={{marginTop: 10}}
+                    buttonStyle={{marginTop: 5}}
                     onPress={() => setTip4(!tips4)}
                 />
             </Card>
 
-            <Card containerStyle={{width: wp(70), height: hp(30), backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
-                <Card.Title h4>
+            <Card containerStyle={{width: wp(70), height: 270, backgroundColor: '#f6efe9', borderRadius: 20, margin: 30}}>
+                <Card.Title>
                     Finding Distractions
                 </Card.Title>
                 <Card.Divider/>
@@ -110,7 +110,7 @@ const Tips = ({navigation}) => {
                 />
                 <Button 
                     title="View Now"
-                    buttonStyle={{marginTop: 10}}
+                    buttonStyle={{marginTop: 5}}
                     onPress={() => setTip5(!tips5)}
                 />
             </Card>
@@ -132,7 +132,7 @@ const Tips = ({navigation}) => {
                             shouldPlay: true,
                             resizeMode: Video.RESIZE_MODE_CONTAIN,
                             source: {
-                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1629617016/mehmapp-tips/Seek_Social_Support_scntrk.mp4'
+                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1630324224/mehmapp-tips/socialSupport_ndzbmv.mp4'
                             },
                         }}
                         timeVisible
@@ -176,7 +176,7 @@ const Tips = ({navigation}) => {
                             shouldPlay: true,
                             resizeMode: Video.RESIZE_MODE_CONTAIN,
                             source: {
-                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1629618668/mehmapp-tips/Become_a_relaxation_expert_hlos1u.mp4'
+                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1630324222/mehmapp-tips/relaxation_vg5ucm.mp4'
                             },
                         }}
                         timeVisible
@@ -219,7 +219,7 @@ const Tips = ({navigation}) => {
                             shouldPlay: true,
                             resizeMode: Video.RESIZE_MODE_CONTAIN,
                             source: {
-                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1629618670/mehmapp-tips/Try_to_manage_how_you_follow_the_outbreak_in_the_media_ixlzc9.mp4'
+                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1630324219/mehmapp-tips/mediaOutbreak_sdagn0.mp4'
                             },
                         }}
                         timeVisible
@@ -260,7 +260,7 @@ const Tips = ({navigation}) => {
                             shouldPlay: true,
                             resizeMode: Video.RESIZE_MODE_CONTAIN,
                             source: {
-                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1629620981/mehmapp-tips/Recognize_that_your_anxiety_is_completely_normal_x74cp1.mp4'
+                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1630324222/mehmapp-tips/anxietyNormal_vlohuo.mp4'
                             },
                         }}
                         timeVisible
@@ -303,7 +303,7 @@ const Tips = ({navigation}) => {
                             shouldPlay: true,
                             resizeMode: Video.RESIZE_MODE_CONTAIN,
                             source: {
-                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1629622037/mehmapp-tips/Finding_a_Distraction_lru1kf.mp4'
+                                uri: 'https://res.cloudinary.com/intro-pl/video/upload/v1630324229/mehmapp-tips/findingDistraction_emghkf.mp4'
                             },
                         }}
                         timeVisible

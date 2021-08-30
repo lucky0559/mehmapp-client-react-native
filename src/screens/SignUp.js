@@ -353,16 +353,16 @@ export default function SignUp ({navigation})  {
       name_fonts: {
         borderBottomColor: "#000000",
         borderBottomWidth: 1,
-        fontSize: 15,
-        marginBottom: 20,
+        fontSize: 17,
+        marginBottom: 12,
         textTransform: 'capitalize',
         fontFamily: 'Roboto_Regular'
       },
       fonts: {
         borderBottomColor: "#000000",
         borderBottomWidth: 1,
-        fontSize: 15,
-        marginBottom: 20,
+        fontSize: 17,
+        marginBottom: 12,
         fontFamily: 'Roboto_Regular',
       },
       button: {
@@ -393,7 +393,7 @@ export default function SignUp ({navigation})  {
       },
       loginPressable: {
         flexDirection:'row-reverse',
-        marginTop:50,
+        marginTop:30,
       },
       icon: {
         fontSize: 20,
@@ -403,8 +403,8 @@ export default function SignUp ({navigation})  {
       passFonts: {
           borderBottomColor: "#000000",
           borderBottomWidth: 1,
-          fontSize: 15,
-          marginBottom: 20,
+          fontSize: 17,
+          marginBottom: 12,
           fontFamily: 'Roboto_Regular',
           paddingLeft: 0,
           flex: 1,
