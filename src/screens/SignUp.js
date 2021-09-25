@@ -8,8 +8,6 @@ import {
     TouchableWithoutFeedback,
     ToastAndroid,
     Alert,
-    Pressable,
-    Dimensions,
     TouchableOpacity,
     StatusBar,
     BackHandler,
@@ -300,14 +298,14 @@ export default function SignUp ({navigation})  {
                       </TouchableOpacity>
           
           
-          <Pressable
+          <TouchableOpacity
           onPress={loginText}
           style={styles.loginPressable}>
               <Text
               style={styles.loginText}>
                   Login
               </Text>
-          </Pressable>
+          </TouchableOpacity>
           
                     </View>
                   </View>

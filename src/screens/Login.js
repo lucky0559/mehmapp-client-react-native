@@ -144,6 +144,10 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
           navigation.replace('SignUp')
         }
 
+        const forgotPassword = () => {
+          navigation.navigate('ForgotPassword')
+        }
+
 
     return (
         <>
@@ -191,14 +195,21 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                       style={styles.button}>
                         <Text style={styles.textbutton}>LOGIN</Text>
                       </TouchableOpacity>
+
+                      <TouchableOpacity
+                      style={styles.pressableForgot}
+                      onPress={forgotPassword}
+                      >
+                        <Text style={styles.text}>Forgot Password?</Text>
+                      </TouchableOpacity>
                    
                  
-                    <Pressable 
+                    <TouchableOpacity
                     style={styles.pressableRegister}
                     onPress={registerText}
                     >
                       <Text style={styles.text}>Sign Up</Text>
-                    </Pressable>
+                    </TouchableOpacity>
                   
                     
         
@@ -300,7 +311,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 30
-      }
+      },
+      pressableForgot: {
+        marginTop:20,
+    },
 })
 
 export default Login;

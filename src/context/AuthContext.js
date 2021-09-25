@@ -115,6 +115,46 @@ const clearError = dispatch => () => {
     })
 }
 
+const check_sendToken = dispatch => async({email}) => {
+
+    try {
+        const response = await axios.post('/sendConfirmationToken', {email})
+        return response
+    }
+    catch(err) {
+        if(err.response && err.response.data) {
+            dispatch({
+                type: 'add_error',
+                payload: err.response.data.msg
+            })
+        }
+        
+    }
+
+}
+
+
+const reset_Password = dispatch => async({email, new_password, password_token}) => {
+    try {
+        const response = await axios.put('/changePassword',
+        {
+            email,
+            new_password,
+            password_token
+        })
+
+        return response
+    }
+    catch(err) {
+        if(err.response && err.response.data) {
+            dispatch({
+                type: 'add_error',
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
 
 export const { Context, Provider } = createDataContext(
     authReducer,
@@ -123,7 +163,9 @@ export const { Context, Provider } = createDataContext(
         signIn,
         signOut,
         localSignIn,
-        clearError
+        clearError,
+        check_sendToken,
+        reset_Password,
     },
     {
         token: null, error: '' , email: null,firstName: null, user_id: null, lastName: null, student_number: null, phone_number: null

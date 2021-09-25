@@ -8,6 +8,7 @@ import Home from './src/screens/Home';
 import Form from './src/screens/Form';
 import Form2 from './src/screens/Form2';
 import Tips from './src/screens/Tips'
+import ForgotPassword from './src/screens/ForgotPassword'
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as AssessmentProvider } from './src/context/AssessmentContext'
 import { Context as AuthContext } from './src/context/AuthContext';
@@ -63,6 +64,10 @@ else {
             <Stack.Screen
               name='SignUp'
               component={SignUp}
+            />
+            <Stack.Screen
+              name='ForgotPassword'
+              component={ForgotPassword}
             />
             {/* <Stack.Screen
               name='Home'
