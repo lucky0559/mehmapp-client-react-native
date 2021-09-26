@@ -23,7 +23,6 @@ import {
 
 
 
-
   const DismissKeyboard = ({ children }) => (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       {children}
@@ -56,6 +55,7 @@ export default function SignUp ({navigation})  {
     const [confirmPassword, setConfirm_Password] = useState('')
     const [phone_number, setPhone_Number] = useState('');
     const [student_number, setStudent_Number] = useState('');
+
   
     const [loginPending, setLoginPending] = useState(false)
 
@@ -122,62 +122,75 @@ export default function SignUp ({navigation})  {
       
             else
             {
-  
-              try{
-  
-              setTimeout(async() => {
-  
-                setLoginPending(false)
-  
-                try {
-                 const response = await signUp({firstName, lastName, email, phone_number, student_number, password});
-
-                if(response) {
-                  Alert.alert(
-                    'Registered',
-                    'Register Successfully! Please verify your email.',
-                    [{
-                      text:'Ok',
-                      onPress:() => navigation.replace('SignIn'),
-                    }]
-                  )
-                }
-                  
-                  
-                  
-                
-
-                  setPassword('')
-                  setConfirm_Password('')
-                  
-                }
-                
-                
-                catch(err) {
-                  console.log(err)
-                }
-
-                
-                
-            }, 1000);
-      
-      
-            setLoginPending(true)
-      
-            }
-  
-            catch(err)
-            {
-              setLoginPending(false)
-              console.log(err)
-              ToastAndroid.show(
-                "Check your Internet Connection",
-                ToastAndroid.SHORT
-              );
-            }
-
 
             
+              
+            Alert.alert(
+              'Privacy Policy',
+              'MeHMApp. Our team is commited to protecting your privacy. This Privacy Policy explains how your personal information is collected, used.\n\nThis Privacy Policy applies to our application named MeHMApp, and its associated subdomains(collectively,our "Service"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy and our Terms of Services.',
+              [{
+                text:'Agree',
+                onPress:() => {
+                  try{
+  
+                    setTimeout(async() => {
+        
+                      setLoginPending(false)
+        
+                      try {
+                       const response = await signUp({firstName, lastName, email, phone_number, student_number, password});
+      
+                      if(response) {
+                        Alert.alert(
+                          'Registered',
+                          'Register Successfully! Please verify your email.',
+                          [{
+                            text:'Ok',
+                            onPress:() => navigation.replace('SignIn'),
+                          }]
+                        )
+                      }
+                        
+                        
+                        
+                      
+      
+                        setPassword('')
+                        setConfirm_Password('')
+                        
+                      }
+                      
+                      
+                      catch(err) {
+                        console.log(err)
+                      }
+      
+                      
+                      
+                  }, 1000);
+            
+            
+                  setLoginPending(true)
+            
+                  }
+        
+                  catch(err)
+                  {
+                    setLoginPending(false)
+                    console.log(err)
+                    ToastAndroid.show(
+                      "Check your Internet Connection",
+                      ToastAndroid.SHORT
+                    );
+                  }
+                }
+              },
+              {
+                text:'Cancel',
+                style:"cancel"
+              }
+            ],
+            )
   
           }
           
@@ -387,7 +400,8 @@ export default function SignUp ({navigation})  {
       loginText: {
         color: "#081B11",
         textDecorationLine: "underline",
-        fontFamily: 'Roboto_Medium'
+        fontFamily: 'Roboto_Medium',
+        alignSelf:'center'
       },
       loginPressable: {
         flexDirection:'row-reverse',
@@ -410,5 +424,8 @@ export default function SignUp ({navigation})  {
       passRow: {
         flexDirection: 'row',
         justifyContent: 'center'
+      },
+      privacy: {
+        fontSize:20
       }
     }); 

@@ -109,6 +109,11 @@ const Home = () => {
                         style={styles.headerFont}>
                             Hello, {firstName} !
                         </Text>
+                        <Text
+                            style={styles.consultation}
+                        >
+                            Consultation day and time is Mon-Thu, 8:00AM to 5:00PM
+                        </Text>
                     </View>
     
                     <View
@@ -229,6 +234,10 @@ const Home = () => {
                 width: wp(20),
                 height: hp(4),
                 borderRadius: 50,
+            },
+            consultation: {
+                top:20,
+                fontFamily:'Roboto_Regular'
             }
         })
 
