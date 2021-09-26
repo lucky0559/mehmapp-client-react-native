@@ -105,6 +105,11 @@ const {state:{error}, check_sendToken, clearError, reset_Password} = useContext(
               }
               
             }
+            else {
+              setLoginPending(false)
+                ToastAndroid.show('Empty Field',
+                ToastAndroid.SHORT);
+            }
 }
     
     const resetPassword = () => {
