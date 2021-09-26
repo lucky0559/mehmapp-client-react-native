@@ -136,6 +136,8 @@ export default function SignUp ({navigation})  {
                     setTimeout(async() => {
         
                       setLoginPending(false)
+
+                      
         
                       try {
                        const response = await signUp({firstName, lastName, email, phone_number, student_number, password});
@@ -206,15 +208,15 @@ export default function SignUp ({navigation})  {
               "Empty Field/s",
               ToastAndroid.SHORT
             );
-          }
-  
-  
-    
-          
-          
+          }       
   
       }
-  
+
+
+
+  const signup = () => {
+
+  }
   
       
           return (
@@ -401,11 +403,10 @@ export default function SignUp ({navigation})  {
         color: "#081B11",
         textDecorationLine: "underline",
         fontFamily: 'Roboto_Medium',
-        alignSelf:'center'
       },
       loginPressable: {
-        flexDirection:'row-reverse',
         marginTop:30,
+        left:wp(75),
       },
       icon: {
         fontSize: 20,
