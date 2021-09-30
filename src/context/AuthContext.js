@@ -51,7 +51,7 @@ const signIn = dispatch => async({email, password}) => {
     try {
         const response = await axios.post('/signin', {email, password})
         await AsyncStorage.setItem('token', response.data.token)
-        await AsyncStorage.setItem('email', response.data.email)
+        await AsyncStorage.setItem('email', email)
         await AsyncStorage.setItem('firstName', response.data.firstName)
         await AsyncStorage.setItem('lastName', response.data.lastName)
         await AsyncStorage.setItem('user_id', response.data.user_id.toString())
