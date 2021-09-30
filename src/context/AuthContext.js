@@ -64,7 +64,7 @@ const signIn = dispatch => async({email, password}) => {
             type: 'set_token',
             payload: {
                 token: response.data.token,
-                email: response.data.email,
+                email: email,
                 firstName: response.data.firstName,
                 lastName: response.data.lastName,
                 user_id: response.data.user_id,
