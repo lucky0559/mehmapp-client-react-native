@@ -77,7 +77,7 @@ const submit = async() => {
             }
         }
     
-        const response = await submitForm({user_id, email, firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling})
+        const response = await submitForm({user_id, firstName, lastName, student_number, phone_number,presentIssues, describe, problemIssue, radio, when, duration, previousCounseling})
 
         if(response) {
             Alert.alert(
