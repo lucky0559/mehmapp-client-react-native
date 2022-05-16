@@ -19,6 +19,8 @@ import {
   import * as ScreenOrientation from 'expo-screen-orientation'
   import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
   import { Ionicons } from '@expo/vector-icons';
+  import DropDownPicker from 'react-native-dropdown-picker';
+  import courses from '../data/courses.json'
 
 
 
@@ -51,6 +53,9 @@ export default function SignUp ({navigation})  {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [course, setCourse] = useState(courses);
+    const [openDropdown, setOpenDropdown] = useState(false)
+    const [courseValue, setCourseValue] = useState(null)
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirm_Password] = useState('')
     const [phone_number, setPhone_Number] = useState('');
@@ -110,6 +115,12 @@ export default function SignUp ({navigation})  {
               ToastAndroid.show('Please provide valid student number with 9-10 digits',
               ToastAndroid.SHORT);
             }
+
+            else if(course.length < 2)
+            {
+              ToastAndroid.show('Please provide 2 or more character',
+              ToastAndroid.SHORT);
+            }
       
             else if(password != confirmPassword)
             {
@@ -140,7 +151,7 @@ export default function SignUp ({navigation})  {
                       
         
                       try {
-                       const response = await signUp({firstName, lastName, email, phone_number, student_number, password});
+                       const response = await signUp({firstName, lastName, email, phone_number, student_number, course, password});
       
                       if(response) {
                         Alert.alert(
@@ -217,6 +228,11 @@ export default function SignUp ({navigation})  {
   const signup = () => {
 
   }
+
+
+  const changeCountry = (course) => {
+    setCourse()
+  }
   
       
           return (
@@ -272,6 +288,15 @@ export default function SignUp ({navigation})  {
                         value={student_number}
                         onChangeText={setStudent_Number}
                       />
+                      {/* <TextInput
+                        placeholder="Course"
+                        placeholderTextColor='#081B11'
+                        style={styles.fonts}
+                        keyboardType="default"
+                        value={course}
+                        onChangeText={setCourse}
+                      /> */}
+                      <DropDownPicker items={courses.courses} placeholder="Course" open={openDropdown} value={courseValue} setOpen={setOpenDropdown} setValue={setCourseValue} setItems={setCourse} style={{backgroundColor: '#2CD681', marginVertical:10}}/>
                       <View style={styles.passRow}>
                       <TextInput
                         placeholder="Password"

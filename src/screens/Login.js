@@ -145,6 +145,7 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
         }
 
         const forgotPassword = () => {
+          clearError();
           navigation.navigate('ForgotPassword')
         }
 
