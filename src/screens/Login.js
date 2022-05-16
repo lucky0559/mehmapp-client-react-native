@@ -172,6 +172,7 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                       keyboardType="email-address"
                       onChangeText={(textvalue) => emailHandler(textvalue)}
                       autoCapitalize='none'
+                      selectionColor='#0a0a0a'
                     />
                     <View style={styles.passRow}>
                     <TextInput
@@ -182,6 +183,7 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                       onChangeText={(textvalue) => passwordHandler(textvalue)}
                       secureTextEntry={hidePassword}
                       autoCapitalize='none'
+                      selectionColor='#0a0a0a'
                     />
                     <Ionicons name={hidePassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHidePassword(!hidePassword)}
                          />

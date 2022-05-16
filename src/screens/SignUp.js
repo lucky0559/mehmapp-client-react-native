@@ -254,6 +254,7 @@ export default function SignUp ({navigation})  {
                         keyboardType="default"
                         value={firstName}
                         onChangeText={setFirstName}
+                        selectionColor='#0a0a0a'
                       />
                       <TextInput
                         placeholder="Last Name"
@@ -262,6 +263,7 @@ export default function SignUp ({navigation})  {
                         keyboardType="default"
                         value={lastName}
                         onChangeText={setLastName}
+                        selectionColor='#0a0a0a'
                       />
                       <TextInput
                         placeholder="CvSU Email"
@@ -271,6 +273,7 @@ export default function SignUp ({navigation})  {
                         value={email}
                         onChangeText={setEmail}
                         autoCapitalize='none'
+                        selectionColor='#0a0a0a'
                       />
                       <TextInput
                         placeholder="Phone Number"
@@ -279,6 +282,7 @@ export default function SignUp ({navigation})  {
                         keyboardType="number-pad"
                         value={phone_number}
                         onChangeText={setPhone_Number}
+                        selectionColor='#0a0a0a'
                       />
                       <TextInput
                         placeholder="Student Number"
@@ -287,6 +291,7 @@ export default function SignUp ({navigation})  {
                         keyboardType="number-pad"
                         value={student_number}
                         onChangeText={setStudent_Number}
+                        selectionColor='#0a0a0a'
                       />
                       {/* <TextInput
                         placeholder="Course"
@@ -307,6 +312,7 @@ export default function SignUp ({navigation})  {
                         value={password}
                         onChangeText={setPassword}
                         autoCapitalize='none'
+                        selectionColor='#0a0a0a'
                       />
                         <Ionicons name={hidePassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHidePassword(!hidePassword)}
                          />
@@ -321,6 +327,7 @@ export default function SignUp ({navigation})  {
                         value={confirmPassword}
                         onChangeText={setConfirm_Password}
                         autoCapitalize='none'
+                        selectionColor='#0a0a0a'
                       />
                       <Ionicons name={hideConfirmPassword ? 'eye-off' : 'eye'} color="black" style={styles.icon} onPress={() => setHideConfirmPassword(!hideConfirmPassword)}
                          />
