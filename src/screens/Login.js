@@ -167,7 +167,7 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                   <View style={styles.form}>
                     <TextInput
                       placeholder="CvSU Email"
-                      placeholderTextColor='#081B11'
+                      placeholderTextColor='#626366'
                       style={styles.fonts}
                       keyboardType="email-address"
                       onChangeText={(textvalue) => emailHandler(textvalue)}
@@ -176,7 +176,7 @@ const {state:{error}, signIn, clearError} = useContext(AuthContext)
                     <View style={styles.passRow}>
                     <TextInput
                       placeholder="Password"
-                      placeholderTextColor='#081B11'
+                      placeholderTextColor='#626366'
                       style={styles.passFonts}
                       keyboardType="default"
                       onChangeText={(textvalue) => passwordHandler(textvalue)}

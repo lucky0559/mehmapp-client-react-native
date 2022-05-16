@@ -249,7 +249,7 @@ export default function SignUp ({navigation})  {
                     <View style={styles.form}>
                       <TextInput
                         placeholder="First Name"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.name_fonts}
                         keyboardType="default"
                         value={firstName}
@@ -257,7 +257,7 @@ export default function SignUp ({navigation})  {
                       />
                       <TextInput
                         placeholder="Last Name"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.name_fonts}
                         keyboardType="default"
                         value={lastName}
@@ -265,7 +265,7 @@ export default function SignUp ({navigation})  {
                       />
                       <TextInput
                         placeholder="CvSU Email"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.fonts}
                         keyboardType="email-address"
                         value={email}
@@ -274,7 +274,7 @@ export default function SignUp ({navigation})  {
                       />
                       <TextInput
                         placeholder="Phone Number"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.fonts}
                         keyboardType="number-pad"
                         value={phone_number}
@@ -282,7 +282,7 @@ export default function SignUp ({navigation})  {
                       />
                       <TextInput
                         placeholder="Student Number"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.fonts}
                         keyboardType="number-pad"
                         value={student_number}
@@ -300,7 +300,7 @@ export default function SignUp ({navigation})  {
                       <View style={styles.passRow}>
                       <TextInput
                         placeholder="Password"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.passFonts}
                         keyboardType="default"
                         secureTextEntry={hidePassword}
@@ -314,7 +314,7 @@ export default function SignUp ({navigation})  {
                       <View style={styles.passRow}>
                       <TextInput
                         placeholder="Confirm Password"
-                        placeholderTextColor='#081B11'
+                        placeholderTextColor='#626366'
                         style={styles.passFonts}
                         keyboardType="default"
                         secureTextEntry={hideConfirmPassword}
