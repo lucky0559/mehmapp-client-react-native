@@ -17,13 +17,13 @@ const authReducer = (state, action) => {
     }
 }
 
-const signUp = dispatch => async({firstName, lastName, email, phone_number, student_number, course, password}) => {
+const signUp = dispatch => async({firstName, lastName, email, phone_number, student_number, courseValue, password}) => {
 
     
 
     try {
 
-    const response = await axios.post('/signup', {firstName, lastName, email, course, password, phoneNumber:phone_number, studentNumber:student_number});
+    const response = await axios.post('/signup', {firstName, lastName, email, phoneNumber:phone_number, studentNumber:student_number, courseValue, password});
 
     return response
     

@@ -147,11 +147,9 @@ export default function SignUp ({navigation})  {
                     setTimeout(async() => {
         
                       setLoginPending(false)
-
-                      
         
                       try {
-                       const response = await signUp({firstName, lastName, email, phone_number, student_number, course, password});
+                       const response = await signUp({firstName, lastName, email, phone_number, student_number, courseValue, password});
       
                       if(response) {
                         Alert.alert(
