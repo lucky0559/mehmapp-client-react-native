@@ -7,7 +7,7 @@ ToastAndroid,
 Dimensions,
 TouchableOpacity
 } from 'react-native';
-import Checkbox from '@react-native-community/checkbox'
+import Checkbox from 'expo-checkbox'
 import { useNavigation } from '@react-navigation/core';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 

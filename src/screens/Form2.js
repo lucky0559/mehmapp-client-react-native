@@ -12,7 +12,7 @@ BackHandler,
 ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import RadioButton from 'expo-radio-button'
+import RadioButton, { RadioButtonGroup, RadioButtonItem } from 'expo-radio-button'
 import { Context as AssessmentContext } from '../context/AssessmentContext';
 import { Context as AuthContext } from '../context/AuthContext'
 import Loading from '../utils/Loading';
@@ -116,6 +116,7 @@ const submit = async() => {
                     placeholder="Problem/Issue"
                     multiline={true}
                     style={styles.textInputStyle}
+                    selectionColor='#0a0a0a'
                 />
 
                 <Text
@@ -125,24 +126,13 @@ const submit = async() => {
                 </Text>
 
                 <View style={styles.radio}>
-                    <RadioButton
-                        value='yes'
-                        containerStyle={{marginBottom:10}}
+                  <RadioButtonGroup containerStyle={{marginBottom:10}}
                         selected={radio}
                         onSelected={setRadio}
-                        radioBackground='#F6EFE9'
-                    >
-                        <Text>Yes</Text>
-                    </RadioButton>
-                    <RadioButton
-                        value='no'
-                        containerStyle={{marginBottom:10}}
-                        selected={radio}
-                        onSelected={setRadio}
-                        radioBackground='#F6EFE9'
-                    >
-                        <Text>No</Text>
-                    </RadioButton>
+                        radioBackground='#F6EFE9'>
+                    <RadioButtonItem style={{margin:10}} value='yes' label='Yes'/>
+                    <RadioButtonItem style={{margin:10}} value='no' label='No'/>
+                  </RadioButtonGroup>
 
                     {radio === 'yes' ?
                     <View style={styles.hidden}>
@@ -154,47 +144,21 @@ const submit = async() => {
                             onChangeText={setWhen}
                             placeholder="When"
                             style={styles.textInputStyle1}
+                            selectionColor='#0a0a0a'
                         />
                         <Text style={styles.headerText}>
                             Duration
                         </Text>
                         <View style={styles.radioBtn}>
-                        <RadioButton
-                            value='1 hour'
-                            containerStyle={{marginBottom:10}}
-                            selected={duration}
-                            onSelected={setDuration}
-                            radioBackground='#F6EFE9'
-                        >
-                            <Text>1 Hour</Text>
-                        </RadioButton>
-                        <RadioButton
-                            value='2 hours'
-                            containerStyle={{marginBottom:10}}
-                            selected={duration}
-                            onSelected={setDuration}
-                            radioBackground='#F6EFE9'
-                        >
-                            <Text>2 Hours</Text>
-                        </RadioButton>
-                        <RadioButton
-                            value='3 hours'
-                            containerStyle={{marginBottom:10}}
-                            selected={duration}
-                            onSelected={setDuration}
-                            radioBackground='#F6EFE9'
-                        >
-                            <Text>3 Hours</Text>
-                        </RadioButton>
-                        <RadioButton
-                            value='more than 3 hours'
-                            containerStyle={{marginBottom:10}}
-                            selected={duration}
-                            onSelected={setDuration}
-                            radioBackground='#F6EFE9'
-                        >
-                            <Text>More Than 3 Hours</Text>
-                        </RadioButton>
+                        <RadioButtonGroup containerStyle={{marginBottom:10}}
+                        selected={duration}
+                        onSelected={setDuration}
+                        radioBackground='#F6EFE9'>
+                    <RadioButtonItem style={{margin:10}} value='1 hour' label='1 Hour'/>
+                    <RadioButtonItem style={{margin:10}} value='2 hours' label='2 Hours'/>
+                    <RadioButtonItem style={{margin:10}} value='3 hours' label='3 Hours'/>
+                    <RadioButtonItem style={{margin:10}} value='more than 3 hours' label='More Than 3 Hours'/>
+                  </RadioButtonGroup>
                         </View>
                         <Text style={styles.headerText}>
                             What was the focus of the previous counseling:
@@ -204,6 +168,7 @@ const submit = async() => {
                             onChangeText={setPreviousCounseling}
                             placeholder="Previous Counseling"
                             style={styles.textInputStyle1}
+                            selectionColor='#0a0a0a'
                         />
                     </View>
                 :

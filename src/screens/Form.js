@@ -76,7 +76,8 @@ const describeHandler = (textvalue) => {
                 <TextInput
                 onChangeText={(textvalue) => describeHandler(textvalue)}
                 multiline={true}
-                style={styles.textInputStyle} />
+                style={styles.textInputStyle}
+                selectionColor='#0a0a0a' />
                 </View>
 
                 <View style={styles.presentIssues}>
